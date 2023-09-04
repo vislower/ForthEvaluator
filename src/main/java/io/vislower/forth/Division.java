@@ -1,5 +1,13 @@
 package io.vislower.forth;
 
-class Division {
+import java.util.Deque;
+
+class Division implements ForthWord{
+
+    @Override
+    public boolean accept(Deque<Integer> stack) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'accept'");
+    }
     
 }

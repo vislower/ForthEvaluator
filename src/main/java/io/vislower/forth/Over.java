@@ -1,5 +1,13 @@
 package io.vislower.forth;
 
-class Over {
+import java.util.Deque;
+
+class Over implements ForthWord{
+
+    @Override
+    public boolean accept(Deque<Integer> stack) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'accept'");
+    }
     
 }

@@ -10,11 +10,14 @@ import java.util.Map;
 class ForthEngine {
     
     Deque<Integer> stack;
-    private Map<String, String> forthDictionary;
+    private Map<String, ForthWord> forthDictionary;
 
     public ForthEngine() {
         this.stack = new ArrayDeque<>();
-        this.forthDictionary = new HashMap<>();
+        this.forthDictionary = new HashMap<>(Map.of("+", new Addition(), "-", new Substraction(), "*",
+         new Multiplication(), "/", new Division(),
+          "dup", new Duplication(), "drop", new Drop(),
+           "swap", new Swap(), "over", new Over()));
     }
 
     public List<Integer> evaluateInput(List<String> input) {

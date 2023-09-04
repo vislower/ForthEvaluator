@@ -6,8 +6,8 @@ class Duplication implements ForthWord{
 
     @Override
     public void accept(Deque<Integer> stack) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'accept'");
+        ensureProperSize(1, stack.size(), "Duplicating requires that the stack contain at least 1 value");
+        stack.push(stack.peek());
     }
     
 }

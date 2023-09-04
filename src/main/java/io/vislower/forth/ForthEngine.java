@@ -1,16 +1,19 @@
 package io.vislower.forth;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 class ForthEngine {
     
-    private ForthStack stack;
+    Deque<Integer> stack;
     private Map<String, String> forthDictionary;
 
     public ForthEngine() {
-        this.stack = new ForthStack();
+        this.stack = new ArrayDeque<>();
         this.forthDictionary = new HashMap<>();
     }
 
@@ -24,5 +27,7 @@ class ForthEngine {
                 // parse command ...
             }
         }
+
+        return new ArrayList<>(this.stack);
     }
 }

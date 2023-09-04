@@ -6,8 +6,11 @@ class Over implements ForthWord{
 
     @Override
     public void accept(Deque<Integer> stack) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'accept'");
+        ensureProperSize(2, stack.size(), "Overing requires that the stack contain at least 2 values");
+        int head = stack.pop();
+        int over = stack.peek();
+        stack.push(head);
+        stack.push(over);
     }
     
 }

@@ -5,9 +5,9 @@ import java.util.Deque;
 class Addition implements ForthWord{
 
     @Override
-    public boolean accept(Deque<Integer> stack) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'accept'");
+    public void accept(Deque<Integer> stack) {
+        ensureProperSize(2, stack.size(), "Addition requires that the stack contain at least 2 values");
+        stack.push(stack.pop() + stack.pop());
     }
     
 }

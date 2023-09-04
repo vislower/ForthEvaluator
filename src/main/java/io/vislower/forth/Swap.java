@@ -6,8 +6,11 @@ class Swap implements ForthWord{
 
     @Override
     public void accept(Deque<Integer> stack) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'accept'");
+        ensureProperSize(2, stack.size(), "Swapping requires that the stack contain at least 2 values");
+        int first = stack.pop();
+        int second = stack.pop();
+        stack.push(first);
+        stack.push(second);
     }
     
 }

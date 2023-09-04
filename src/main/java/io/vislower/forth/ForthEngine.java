@@ -26,11 +26,31 @@ class ForthEngine {
             
             String[] command = expression.split(" ");
 
+            // ADD check for new word definition
+
             for (String word : command) {
-                // parse command ...
+                word = word.toLowerCase();
+                Integer number = isNumber(word);
+                if (number != null) {
+                    stack.push(number);
+                } else if (forthDictionary.containsKey(word)) {
+                    this.forthDictionary.get(word).accept(stack);
+                } else {
+                    throw new IllegalArgumentException("No definition available for operator ".concat("\"").concat(word).concat("\""));
+                }
             }
         }
 
         return new ArrayList<>(this.stack);
+    }
+
+    private Integer isNumber(String s) {
+        Integer number;
+        try {
+            number = Integer.parseInt(s);
+        } catch (NumberFormatException e) {
+            return null;
+        }
+        return number;
     }
 }

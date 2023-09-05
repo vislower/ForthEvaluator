@@ -1,26 +1,24 @@
 package io.vislower.forth;
 
 import java.util.Deque;
+import java.util.Map;
 
 class UserWord implements ForthWord {
 
     private String[] definition;
-    private String wordDefinition;
+    private Map<String, ForthWord> forthDictionary;
 
-    public UserWord(String[] definition) {
+    public UserWord(String[] definition, Map<String, ForthWord> forthDictionary) {
         checkDefinition(definition);
         this.definition = definition;
-        
-        StringBuilder def = new StringBuilder();
-        for (int i = 2; i < definition.length - 1; i++) {
-            def.append(definition[i]);
-        }
-        this.wordDefinition = def.toString();
+        this.forthDictionary = forthDictionary;
     }
 
     @Override
     public void accept(Deque<Integer> stack) {
-        
+        for (int i = 2; i < definition.length - 1; i++) {
+            ForthEngine.execute(definition[i], stack, this.forthDictionary);
+        }
     }
 
     private void checkDefinition(String[] definition) {

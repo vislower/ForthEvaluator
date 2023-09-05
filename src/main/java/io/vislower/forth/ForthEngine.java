@@ -29,7 +29,7 @@ class ForthEngine {
             // new word definition
             if (command[0] == ":" && command[command.length - 1] == ";") {
 
-                UserWord userWord = new UserWord(command);
+                UserWord userWord = new UserWord(command, this.forthDictionary);
                 String word = command[1];
                 
                 this.forthDictionary.put(word, userWord);
@@ -37,19 +37,22 @@ class ForthEngine {
             }
 
             for (String word : command) {
-                word = word.toLowerCase();
-                Integer number = isNumber(word);
-                if (number != null) {
-                    stack.push(number);
-                } else if (forthDictionary.containsKey(word)) {
-                    this.forthDictionary.get(word).accept(stack);
-                } else {
-                    throw new IllegalArgumentException("No definition available for operator ".concat("\"").concat(word).concat("\""));
-                }
+                execute(word, stack, forthDictionary);
             }
         }
 
         return new ArrayList<>(this.stack);
+    }
+
+    static void execute(String word, Deque<Integer> stack, Map<String, ForthWord> dict) {
+        Integer number = isNumber(word);
+        if (number != null) {
+            stack.push(number);
+        } else if (dict.containsKey(word)) {
+            dict.get(word).accept(stack);
+        } else {
+            throw new IllegalArgumentException("No definition available for operator ".concat("\"").concat(word).concat("\""));
+        }
     }
 
     static Integer isNumber(String s) {

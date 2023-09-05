@@ -26,7 +26,15 @@ class ForthEngine {
             
             String[] command = expression.split(" ");
 
-            // ADD check for new word definition
+            // new word definition
+            if (command[0] == ":" && command[command.length - 1] == ";") {
+
+                UserWord userWord = new UserWord(command);
+                String word = command[1];
+                
+                this.forthDictionary.put(word, userWord);
+                continue;
+            }
 
             for (String word : command) {
                 word = word.toLowerCase();
@@ -44,7 +52,7 @@ class ForthEngine {
         return new ArrayList<>(this.stack);
     }
 
-    private Integer isNumber(String s) {
+    static Integer isNumber(String s) {
         Integer number;
         try {
             number = Integer.parseInt(s);

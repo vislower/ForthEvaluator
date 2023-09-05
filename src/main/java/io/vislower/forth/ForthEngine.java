@@ -14,7 +14,7 @@ class ForthEngine {
 
     public ForthEngine() {
         this.stack = new ArrayDeque<>();
-        this.forthDictionary = new HashMap<>(Map.of("+", new Addition(), "-", new Substraction(), "*",
+        this.forthDictionary = new HashMap<>(Map.of("+", new Addition(), "-", new Subtraction(), "*",
          new Multiplication(), "/", new Division(),
           "dup", new Duplication(), "drop", new Drop(),
            "swap", new Swap(), "over", new Over()));

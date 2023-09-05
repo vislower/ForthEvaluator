@@ -27,17 +27,17 @@ class ForthEngine {
             String[] command = expression.split(" ");
 
             // new word definition
-            if (command[0] == ":" && command[command.length - 1] == ";") {
+            if (command[0].equals(":") && command[command.length - 1].equals(";")) {
 
                 UserWord userWord = new UserWord(command, this.forthDictionary);
                 String word = command[1];
                 
-                this.forthDictionary.put(word, userWord);
+                this.forthDictionary.put(word.toLowerCase(), userWord);
                 continue;
             }
 
             for (String word : command) {
-                execute(word, stack, forthDictionary);
+                execute(word.toLowerCase(), stack, forthDictionary);
             }
         }
 

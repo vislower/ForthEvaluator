@@ -10,6 +10,4 @@ public interface ForthWord {
             throw new IllegalArgumentException(errorMessage);
         }
     }
-
-    
 }
